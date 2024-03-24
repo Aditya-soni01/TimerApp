@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:TimerApp.ViewModels"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             x:Class="TimerApp.Views.TimerView"
+             x:DataType="viewmodels:TimerViewModel"
+             Title="TimerView">
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="#a2d2ff" />
+    </Page.Behaviors>
+    <Grid RowDefinitions=".4*, *">
+        <Border 
+            Margin="0,-2,0,0"
+         BackgroundColor="White"
+         StrokeThickness="0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="0,0,50,50"/>
+            </Border.StrokeShape>
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#a2d2ff"
+                                  Offset="0.1"/>
+                    <GradientStop Color="#ffc8dd"
+                                  Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Label Text="Count Down Timer"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   TextColor="White"
+                   FontSize="26"
+                   Margin="0,0,0,60"
+                   FontAttributes="Bold"
+                   />
+        </Border>
+        <Border 
+         Grid.Row="1"
+         BackgroundColor="{StaticResource White}"
+         StrokeThickness="0"
+         Margin="0,-40,0,0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="50,50,0,0"/>
+            </Border.StrokeShape>
+        </Border>
+        <Grid Grid.Row="3">
+            
+            <Grid  RowDefinitions ="Auto, Auto, *, *"
+                   ColumnDefinitions="0.5*, 0.5*"
+                   HorizontalOptions="Center"
+                   Margin="0,60,0,0"
+                   RowSpacing="20"
+                   ColumnSpacing="-90">
+                <Border Grid.Column="0"
+                        HorizontalOptions="Start"
+                        WidthRequest="90">
+                    <Label 
+                        Text="Select Days"
+                        TextColor="White"
+                        Padding="6"/>
+                    <Border.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#a2d2ff"
+                           Offset="0.1"/>
+                            <GradientStop Color="#ffc8dd"
+                           Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                </Border>
+
+                <Border Grid.Column="1">
+                    <Label 
+                        Text="Select Hours"
+                        TextColor="White"
+                        Padding="6"/>
+                    <Border.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#a2d2ff"
+                                          Offset="0.1"/>
+                            <GradientStop Color="#ffc8dd"
+                                          Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                </Border>
+
+                <Border 
+                    Grid.Row="1"
+                    HeightRequest="45"
+                        WidthRequest="90"
+                        Margin="0"
+                    BackgroundColor="White"
+                        HorizontalOptions="Start">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <DatePicker
+                        HorizontalOptions="Center"
+                        x:Name="DatePicker"
+                        TextColor="{StaticResource Gray500}"
+                        PropertyChanged="OnDatePickerPropertyChanged">
+                    </DatePicker>
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HeightRequest="45"
+                    BackgroundColor="White"
+                    WidthRequest="90"
+                    Margin="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    
+                    <TimePicker
+                        HorizontalOptions="Center"
+                        PropertyChanged="OnTimePickerPropertyChanged"
+                        TextColor="{StaticResource Gray500}">
+                    </TimePicker>
+                </Border>
+                  <!--Start Button-->
+                <Border Grid.Row="2"
+                        Margin="0,-30,0,0"
+                        HeightRequest="50"
+                        WidthRequest="220">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    
+                    <Border.Shadow>
+                        <Shadow Brush="Black"
+                                Offset="10,10"
+                                Radius="20"
+                                Opacity="0.4" />
+                    </Border.Shadow>
+                    <Button 
+                        Text="Start Timer"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        Command="{Binding StartCommand}">
+                        <Button.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="#a2d2ff"
+                                              Offset="0.1"/>
+                                <GradientStop Color="#ffc8dd"
+                                              Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+
+                    </Button>
+                </Border>
+                
+                <!--<Button
+                    Grid.Row="0"
+                    Text="Start Timer"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    HeightRequest="50"
+                    WidthRequest="220"
+                    Margin="0,-20,0,0"
+                    Command="{Binding StartCommand}">
+                <Button.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#a2d2ff"
+                           Offset="0.1"/>
+                        <GradientStop Color="#ffc8dd"
+                           Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>-->
+                <!--Stop Button-->
+                <Border Grid.Row="3"
+                        Margin="0,-220,0,0"
+                        HeightRequest="50">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+
+                    <Border.Shadow>
+                        <Shadow Brush="Black"
+                                Offset="10,10"
+                                Radius="20"
+                                Opacity="0.4" />
+                    </Border.Shadow>
+                    <Button 
+                        Text="Stop Timer"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        Command="{Binding StopCommand}">
+                        <Button.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="#a2d2ff"
+                              Offset="0.1"/>
+                                <GradientStop Color="#ffc8dd"
+                              Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+
+                    </Button>
+                </Border>
+
+
+                <!--<Button
+        Grid.Row="3"
+        Text="Stop Timer"
+        FontAttributes="Bold"
+        FontSize="16"
+        HeightRequest="50"
+        WidthRequest="220"
+            Margin="0,-220,0,0"
+        Command="{Binding StopCommand}">
+                    <Button.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#a2d2ff"
+               Offset="0.1"/>
+                            <GradientStop Color="#ffc8dd"
+               Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>-->
+            </Grid>
+        </Grid>
+        
+        
+        <!--Count Down-->
+        <Grid 
+         Margin="0,100,0,0"
+         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid Margin="30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Text="EVENTS" FontSize="24" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+                <Border
+                 BackgroundColor="{StaticResource White}"
+                 StrokeThickness="1"
+                 HeightRequest="90"
+                 Margin="0,5">
+                    <Border.Shadow>
+                        <Shadow Brush="Black"
+                             Offset="10,10"
+                             Radius="20"
+                             Opacity="0.4" />
+                    </Border.Shadow>
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <StackLayout Orientation="Horizontal" Grid.Row="1" HorizontalOptions="End" Margin="10,10,30,0" Spacing="15">
+                        <StackLayout>
+                            <Label Text="{Binding CountdownDays}" FontSize="35" FontAttributes="Bold" TextColor="{StaticResource Gray900}" Opacity="0.5" HorizontalOptions="End"/>
+                            <Label Text="DAYS" FontSize="10" TextColor="{StaticResource Gray900}" Opacity="0.5" HorizontalOptions="End" Margin="0,-5,0,0"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="{Binding CountdownHours}" FontSize="35" FontAttributes="Bold" TextColor="{StaticResource Gray900}" Opacity="0.5" HorizontalOptions="End"/>
+                            <Label Text="HOURS" FontSize="10" TextColor="{StaticResource Gray900}" Opacity="0.5" HorizontalOptions="End" Margin="0,-5,0,0"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="{Binding CountdownMinutes}" FontSize="35" FontAttributes="Bold" TextColor="{StaticResource Gray900}" Opacity="0.5" HorizontalOptions="End"/>
+                            <Label Text="MINUTES" FontSize="10" TextColor="{StaticResource Gray900}" Opacity="0.5" HorizontalOptions="End" Margin="0,-5,0,0"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="{Binding CountdownSeconds}" FontSize="35" FontAttributes="Bold" TextColor="{StaticResource Gray900}" Opacity="0.5" HorizontalOptions="End"/>
+                            <Label Text="SECONDS" FontSize="10" TextColor="{StaticResource Gray900}" Opacity="0.5" HorizontalOptions="End" Margin="0,-5,0,0"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Border>
+
+            </Grid>
+        </Grid>
+    </Grid>
+
+</ContentPage>
